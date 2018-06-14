@@ -365,7 +365,7 @@
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="images"></a>
-## head 图片
+## 图片
 
   - [10.1](#10.1) <a name='10.1'></a> 禁止 `img` 的 `src` 取值为空。延迟加载的图片也要增加默认的 `src`。
 
