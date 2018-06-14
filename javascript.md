@@ -8,6 +8,7 @@
 
   1. [类型](#types)
   1. [引用](#references)
+  1. [对象](#objects)
   1. [数组](#arrays)
   1. [解构](#destructuring)
   1. [字符串](#strings)
@@ -32,7 +33,6 @@
   1. [jQuery](#jquery)
   1. [ECMAScript 5 浏览器的兼容性](#ecmascript-5-compatibility)
   1. [ECMAScript 6 编码规范](#ecmascript-6-styles)
-  1. [测试](#testing)
   1. [性能](#performance)
   1. [相关资源](#resources)
 
@@ -527,7 +527,7 @@
     ```javascript
     // really bad
     function handleThings(opts) {
-      // 不！我们不应该改变函数参数。
+      // 我们不应该改变函数参数。
       // 更加糟糕: 如果参数 opts 是 false 的话，它就会被设定为一个对象。
       // 但这样的写法会造成一些 Bugs。
       //（注：例如当 opts 被赋值为空字符串，opts 仍然会被下一行代码设定为一个空对象。）
@@ -573,7 +573,7 @@
 
   - [8.1](#8.1) <a name='8.1'></a> 当你必须使用函数表达式（或传递一个匿名函数）时，使用箭头函数符号。
 
-    > 为什么？因为箭头函数创造了新的一个 `this` 执行环境（译注：参考 [Arrow functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 和 [ES6 arrow functions, syntax and lexical scoping](http://toddmotto.com/es6-arrow-functions-syntaxes-and-lexical-scoping/)），通常情况下都能满足你的需求，而且这样的写法更为简洁。
+    > 为什么？因为箭头函数创造了新的一个 `this` 执行环境（注：参考 [Arrow functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 和 [ES6 arrow functions, syntax and lexical scoping](http://toddmotto.com/es6-arrow-functions-syntaxes-and-lexical-scoping/)），通常情况下都能满足你的需求，而且这样的写法更为简洁。
 
     > 为什么不？如果你有一个相当复杂的函数，你或许可以把逻辑部分转移到一个函数声明上。
 

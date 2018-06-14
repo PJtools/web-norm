@@ -1,8 +1,18 @@
-# 前端开发规范
+# Web前端开发编码规范指南
 
-[Javascript 开发编码规范指南](https://github.com/PJtools/web-norm/blob/master/javascript.md)
+## 目录
+
+  1. [Javascript 开发编码规范指南](https://github.com/PJtools/web-norm/blob/master/javascript.md)
+
+## 参考来源
+
+  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 
 ## License
-[MIT](http://opensource.org/licenses/MIT)
+  [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2018, PJtools
+## 版权所有
+
+  ```
+  Copyright (c) 2018, PJtools
+  ```
