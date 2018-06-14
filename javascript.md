@@ -30,6 +30,7 @@
   1. [命名规则](#naming-conventions)
   1. [存取器](#accessors)
   1. [事件](#events)
+  1. [动态特性](#dynamic-characteristics)
   1. [jQuery](#jquery)
   1. [ECMAScript 5 浏览器的兼容性](#ecmascript-5-compatibility)
   1. [ECMAScript 6 编码规范](#ecmascript-6-styles)
@@ -1221,6 +1222,135 @@
     }
     ```
 
+  - [17.4](#17.4) <a name='17.4'></a> 文件顶部必须包含文件注释，用 `@file` 和 `@author` 标识文件说明。
+
+    >开发者信息能够体现开发人员对文件的贡献，并且能够让遇到问题或希望了解相关信息的人找到维护人。通常情况文件在被创建时标识的是创建者。随着项目的进展，越来越多的人加入，参与这个文件的开发，新的作者应该被加入 `@author` 标识。
+
+    >`@author` 中的名字不允许被删除。任何劳动成果都应该被尊重。
+
+    >`@author` 标识具有多人时，原则是按照 `责任` 进行排序。通常的说就是如果有问题，就是找第一个人应该比找第二个人有效。比如文件的创建者由于各种原因，模块移交给了其他人或其他团队，后来因为新增需求，其他人在新增代码时，添加 `@author` 标识应该把自己的名字添加在创建人的前面。
+
+    ```javascript
+    /**
+     * @file Describe the file
+     * @author author-name(mail-name@domain.com)
+     *         author-name2(mail-name2@domain.com)
+     */
+    ```
+
+  - [17.5](#17.5) <a name='17.5'></a> 命名空间使用 `@namespace` 标识。
+
+    ```javascript
+    /**
+     * @namespace
+     */
+    var util = {};
+    ```
+
+  - [17.6](#17.6) <a name='17.6'></a> 使用 `@class` 标记类或构造函数。
+
+    >对于使用对象 `constructor` 属性来定义的构造函数，可以使用 `@constructor` 来标记。
+
+    ```javascript
+    /**
+     * 描述
+     *
+     * @class
+     */
+    function Developer() {
+      // constructor body
+    }
+    ```
+
+  - [17.7](#17.7) <a name='17.7'></a> 使用 `@extends` 标记类的继承信息。
+
+    ```javascript
+    /**
+     * 描述
+     *
+     * @class
+     * @extends Developer
+     */
+    function Fronteer() {
+      Developer.call(this);
+      // constructor body
+    }
+    util.inherits(Fronteer, Developer);
+    ```
+
+  - [17.8](#17.8) <a name='17.8'></a> 类的属性或方法等成员信息不是 `public` 的，应使用 `@protected` 或 `@private` 标识可访问性。
+
+    >生成的文档中将有可访问性的标记，避免用户直接使用非 `public` 的属性或方法。
+
+    ```javascript
+    /**
+     * 类描述
+     *
+     * @class
+     * @extends Developer
+     */
+    var Fronteer = function () {
+      Developer.call(this);
+
+      /**
+      * 属性描述
+      *
+      * @type {string}
+      * @private
+      */
+      this.level = 'T12';
+
+      // constructor body
+    };
+    util.inherits(Fronteer, Developer);
+
+    /**
+     * 方法描述
+     *
+     * @private
+     * @return {string} 返回值描述
+     */
+    Fronteer.prototype.getLevel = function () {
+    };
+    ```
+
+  - [17.9](#17.9) <a name='17.9'></a> 函数/方法注释必须包含函数说明，有参数和返回值时必须使用注释标识。参数和返回值注释必须包含类型信息，且不允许省略参数的说明。当函数是内部函数，外部不可访问时，可以使用 `@inner` 标识。
+
+    ```javascript
+    /**
+     * 函数描述
+     *
+     * @param {string} p1 参数1的说明
+     * @param {string} p2 参数2的说明，比较长
+     *     那就换行了.
+     * @param {number?} p3 参数3的说明（可选）
+     * @return {Object} 返回值描述
+     */
+    function foo(p1, p2, p3) {
+      var p3 = p3 || 10;
+      return {
+        p1: p1,
+        p2: p2,
+        p3: p3
+      };
+    }
+    ```
+
+  - [17.10](#17.10) <a name='17.10'></a> 对 `Object` 中各项的描述， 必须使用 `@param` 标识。
+
+    ```javascript
+    /**
+     * 函数描述
+     *
+     * @param {Object} option 参数描述
+     * @param {string} option.url option项描述
+     * @param {string?} option.method option项描述（可选）
+     */
+    function foo(option) {
+      // TODO
+    }
+    ```
+
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="whitespace"></a>
@@ -1397,6 +1527,52 @@
     return obj;
     ```
 
+  - [18.7](#18.7) <a name='18.7'></a> `switch` 下的 `case` 和 `default` 必须增加一个缩进层级。
+
+    ```javascript
+    // good
+    switch (variable) {
+      case '1':
+        // do...
+        break;
+      case '2':
+        // do...
+        break;
+      default:
+        // do...
+    }
+
+    // bad
+    switch (variable) {
+    case '1':
+      // do...
+      break;
+    case '2':
+      // do...
+      break;
+    default:
+      // do...
+    }
+    ```
+  
+  - [18.8](#18.8) <a name='18.8'></a> 在对象创建时，属性中的 `:` 之后必须有空格，`:` 之前不允许有空格。
+
+    ```javascript
+    // good
+    const obj = {
+      a: 1,
+      b: 2,
+      c: 3
+    };
+
+    // bad
+    const obj = {
+      a : 1,
+      b:2,
+      c :3
+    };
+    ```
+
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="commas"></a>
@@ -1484,7 +1660,7 @@
 <a name="semicolons"></a>
 ## 分号
 
-  - [20.1](#20.1) <a name='20.1'></a> **使用分号**
+  - [20.1](#20.1) <a name='20.1'></a> **使用分号**，不得省略语句结束的分号。
 
     ```javascript
     // bad
@@ -1504,6 +1680,22 @@
       const name = 'Skywalker';
       return name;
     })();
+    ```
+
+  - [20.2](#20.2) <a name='20.2'></a> 函数定义结束不允许添加分号。
+
+    ```javascript
+    // good
+    function funcName() {
+    }
+
+    // bad
+    function funcName() {
+    };
+
+    // 如果是函数表达式，分号是不允许省略的。
+    const funcName = function () {
+    };
     ```
 
 **[⬆ 返回目录](#table-of-contents)**
@@ -1602,7 +1794,7 @@
     }
     ```
 
-  - [22.2](#22.2) <a name='22.2'></a> 使用驼峰式命名对象、函数和实例。
+  - [22.2](#22.2) <a name='22.2'></a> 使用 `Camel` 驼峰式命名对象、函数、命名空间和实例等。
 
     ```javascript
     // bad
@@ -1615,7 +1807,7 @@
     function thisIsMyFunction() {}
     ```
 
-  - [22.3](#22.3) <a name='22.3'></a> 使用帕斯卡式命名构造函数或类。
+  - [22.3](#22.3) <a name='22.3'></a> 使用 `Pascal` 帕斯卡式命名构造函数或类。
 
     ```javascript
     // bad
@@ -1639,7 +1831,24 @@
     });
     ```
 
-  - [22.4](#22.4) <a name='22.4'></a> 不要使用下划线 `_` 结尾或开头来命名属性和方法。
+  - [22.4](#22.4) <a name='22.4'></a> `常量` 使用 `全部字母大写`，`单词间下划线分隔` 的命名方式。
+
+    ```javascript
+    const HTML_ENTITY = {};
+    ```
+
+  - [22.5](#22.5) <a name='22.5'></a> `枚举变量` 使用 `Pascal命名法`，`枚举的属性` 使用 `全部字母大写，单词间下划线分隔` 的命名方式。
+
+    ```javascript
+    const TargetState = {
+      READING: 1,
+      READED: 2,
+      APPLIED: 3,
+      READY: 4
+    };
+    ```
+
+  - [22.6](#22.6) <a name='22.6'></a> 不要使用下划线 `_` 结尾或开头来命名属性和方法（除 `ES5` 中定义对象的 `私有变量` 可使用 `_` 开头）。
 
     ```javascript
     // bad
@@ -1651,7 +1860,7 @@
     this.firstName = 'Panda';
     ```
 
-  - [22.5](#22.5) <a name='22.5'></a> 别保存 `this` 的引用。使用箭头函数或 Function。
+  - [22.7](#22.7) <a name='22.7'></a> 别保存 `this` 的引用。使用箭头函数或 Function。
 
     ```javascript
     // bad [ES5]
@@ -1670,7 +1879,7 @@
     }
     ```
 
-  - [22.6](#22.6) <a name='22.6'></a> 如果你的文件只输出一个类，那你的文件名必须和类名完全保持一致。
+  - [22.8](#22.8) <a name='22.8'></a> 如果你的文件只输出一个类，那你的文件名必须和类名完全保持一致。
 
     ```javascript
     // file contents
@@ -1690,7 +1899,7 @@
     import CheckBox from './CheckBox';
     ```
 
-  - [22.7](#22.7) <a name='22.7'></a> 当你导出默认的函数时使用驼峰式命名。你的文件名必须和函数名完全保持一致。
+  - [22.9](#22.9) <a name='22.9'></a> 当你导出默认的函数时使用驼峰式命名。你的文件名必须和函数名完全保持一致。
 
     ```javascript
     function makeStyleGuide() {
@@ -1699,7 +1908,7 @@
     export default makeStyleGuide;
     ```
 
-  - [22.8](#22.8) <a name='22.8'></a> 当你导出单例、函数库、空对象时使用帕斯卡式命名。
+  - [22.10](#22.10) <a name='22.10'></a> 当你导出单例、函数库、空对象时使用 `帕斯卡式命名`。
 
     ```javascript
     const StyleGuide = {
@@ -1708,6 +1917,34 @@
     };
 
     export default StyleGuide;
+    ```
+
+  - [22.11](#22.11) <a name='22.11'></a> `类名` 使用 `名词`。
+
+    ```javascript
+    function Engine(options) {
+    }
+    ```
+
+  - [22.12](#22.12) <a name='22.12'></a> `函数名` 使用 `动宾短语`。
+
+    ```javascript
+    function getStyle(element) {
+    }
+    ```
+
+  - [22.13](#22.13) <a name='22.13'></a> `boolean` 类型的变量使用 `is` 或 `has` 开头。
+
+    ```javascript
+    const isReady = false;
+    const hasMoreCommands = false;
+    ```
+
+  - [22.14](#22.14) <a name='22.14'></a> `Promise对象` 用 `动宾短语的进行时` 表达。
+
+    ```javascript
+    const loadingData = ajax.get('url');
+    loadingData.then(callback);
     ```
 
 **[⬆ 返回目录](#table-of-contents)**
@@ -1790,11 +2027,55 @@
     });
     ```
 
-  **[⬆ 返回目录](#table-of-contents)**
+**[⬆ 返回目录](#table-of-contents)**
 
+<a name="dynamic-characteristics"></a>
+## 动态特性
+
+  - [25.1](#25.1) <a name='25.1'></a> 避免直接使用 `eval` 函数。
+
+    >直接 `eval`，指的是以函数方式调用 `eval` 的调用方法。直接 `eval` 调用执行代码的作用域为本地作用域，应当避免。
+
+    >如果有特殊情况需要使用直接 `eval`，需在代码中用详细的注释说明为何必须使用直接 `eval`，不能使用其它动态执行代码的方式，同时需要其他资深工程师进行 `Code Review`。
+
+  - [25.2](#25.2) <a name='25.2'></a> 使用 `new Function` 执行动态代码。
+
+    >通过 `new Function` 生成的函数作用域是全局使用域，不会影响当当前的本地作用域。如果有动态代码执行的需求，建议使用 `new Function`。
+
+    ```javascript
+    const handler = new Function('x', 'y', 'return x + y;');
+    const result = handler($('#x').val(), $('#y').val());
+    ```
+
+  - [25.3](#25.3) <a name='25.3'></a> 尽量不要使用 `with`。
+
+    >使用 `with` 可能会增加代码的复杂度，不利于阅读和管理；也会对性能有影响。大多数使用 `with` 的场景都能使用其他方式较好的替代。所以，尽量不要使用 `with`。
+
+  - [25.4](#25.4) <a name='25.4'></a> 减少 `delete` 的使用。
+
+    >如果没有特别的需求，减少或避免使用 `delete`。 `delete` 的使用会破坏部分 `JavaScript` 引擎的性能优化。
+
+  - [25.5](#25.5) <a name='25.5'></a> 处理 `delete` 可能产生的异常。
+
+    >对于有被遍历需求，且值 `null` 被认为具有业务逻辑意义的值的对象，移除某个属性必须使用 `delete` 操作。
+
+    >在严格模式或 IE 下使用 `delete` 时，不能被删除的属性会抛出异常，因此在不确定属性是否可以删除的情况下，建议添加 `try-catch` 块。
+
+    ```javascript
+    try {
+      delete o.x;
+    }
+    catch (deleteError) {
+      o.x = null;
+    }
+    ```
+
+**[⬆ 返回目录](#table-of-contents)**
+
+<a name="jquery"></a>
 ## jQuery
 
-  - [25.1](#25.1) <a name='25.1'></a> 使用 `$` 作为存储 jQuery 对象的变量名前缀。
+  - [26.1](#26.1) <a name='26.1'></a> 使用 `$` 作为存储 jQuery 对象的变量名前缀。
 
     ```javascript
     // bad
@@ -1804,7 +2085,7 @@
     const $sidebar = $('.sidebar');
     ```
 
-  - [25.2](#25.2) <a name='25.2'></a> 缓存 jQuery 查询。
+  - [26.2](#26.2) <a name='26.2'></a> 缓存 jQuery 查询。
 
     ```javascript
     // bad
@@ -1831,9 +2112,9 @@
     }
     ```
 
-  - [25.3](#25.3) <a name='25.3'></a> 对 DOM 查询使用层叠 `$('.sidebar ul')` 或 父元素 > 子元素 `$('.sidebar > ul')`。
+  - [26.3](#26.3) <a name='26.3'></a> 对 DOM 查询使用层叠 `$('.sidebar ul')` 或 父元素 > 子元素 `$('.sidebar > ul')`。
 
-  - [25.4](#25.4) <a name='25.4'></a> 对有作用域的 jQuery 对象查询使用 `find`。
+  - [26.4](#26.4) <a name='26.4'></a> 对有作用域的 jQuery 对象查询使用 `find`。
 
     ```javascript
     // bad
@@ -1857,14 +2138,14 @@
 <a name="ecmascript-5-compatibility"></a>
 ## ECMAScript 5 浏览器的兼容性
 
-  - [26.1](#26.1) <a name='26.1'></a> 参考 Kangax 的 ES5 [兼容性](http://kangax.github.com/es5-compat-table/)。
+  - [27.1](#27.1) <a name='27.1'></a> 参考 Kangax 的 ES5 [兼容性](http://kangax.github.com/es5-compat-table/)。
 
 **[⬆ 返回目录](#table-of-contents)**
 
 <a name="ecmascript-6-styles"></a>
 ## ECMAScript 6 规范
 
-  - [27.1](#27.1) <a name='27.1'></a> 以下是链接到 ES6 各个特性的列表。
+  - [28.1](#28.1) <a name='28.1'></a> 以下是链接到 ES6 各个特性的列表。
 
 1. [箭头函数](#arrow-functions)
 1. [类](#constructors)

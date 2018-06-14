@@ -7,9 +7,8 @@
 
 ## 参考来源
 
-  - [Baidu Html/Css/Javascript Style Guide](https://github.com/ecomfe)
+  - [Baidu Html/Css/Javascript规范](https://github.com/ecomfe)
   - [编码规范 @mdo](https://codeguide.bootcss.com/)
-  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
   - [Aliyun前端html-css规范](https://yq.aliyun.com/articles/51487)
 
 ## License
