@@ -1,0 +1,9 @@
+.idea
+.vscode
+*.diff
+*.patch
+*.bak
+node_modules/
+.project
+.settings
+
