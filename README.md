@@ -4,6 +4,10 @@
 
   1. [Javascript 开发编码规范指南](https://github.com/PJtools/web-norm/blob/master/javascript.md)
   2. [HTML 开发编码规范指南](https://github.com/PJtools/web-norm/blob/master/html.md)
+  3. [CSS 开发编码规范指南](https://github.com/PJtools/web-norm/blob/master/css.md)
+
+## 代码目录结构
+  1. [前端JQuery技术栈工程代码目录结构说明](https://github.com/PJtools/web-norm/blob/master/directory-structure.md)
 
 ## 参考来源
 
@@ -18,4 +22,6 @@
 
   ```
   Copyright (c) 2018, PJtools
+
+  https://github.com/ecomfe/spec/blob/master/css-style-guide.md
   ```
