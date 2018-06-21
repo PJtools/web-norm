@@ -22,6 +22,4 @@
 
   ```
   Copyright (c) 2018, PJtools
-
-  https://github.com/ecomfe/spec/blob/master/css-style-guide.md
   ```
