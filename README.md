@@ -7,7 +7,7 @@
   3. [CSS 开发编码规范指南](https://github.com/PJtools/web-norm/blob/master/css.md)
 
 ## 代码目录结构
-  1. [前端JQuery技术栈工程代码目录结构说明](https://github.com/PJtools/web-norm/blob/master/directory-structure.md)
+  1. [前端ES5技术栈工程代码目录结构说明](https://github.com/PJtools/web-norm/blob/master/directory-structure.md)
 
 ## 参考来源
 
